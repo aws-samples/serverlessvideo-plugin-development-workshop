@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverlessVideo-plugin-transcribe
+
+Resources:
+  PluginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Timeout: 900
+      MemorySize: 1024
+      Tracing: Active
+      Events:
+        pluginTrigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source:
+                - serverlessVideo.pluginManager
+              detail-type:
+                - preMetadata.transcribePlugin
+      Environment:
+        Variables:
+          TRANSCRIBE_BUCKET: !Ref TranscribeOutputBucket
+          POWERTOOLS_SERVICE_NAME: !Ref AWS::StackName
+          POWERTOOLS_METRICS_NAMESPACE: !Ref AWS::StackName
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref TranscribeOutputBucket
+        - Statement:
+            Sid: PluginFunctionPermissions
+            Effect: Allow
+            Action:
+              - transcribe:StartTranscriptionJob
+              - events:PutEvents
+            Resource: "*"
+
+  TranscribeOutputBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName : !Join ["",[!Ref "AWS::AccountId","-",!Ref "AWS::Region","-video-transcription"]]
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled

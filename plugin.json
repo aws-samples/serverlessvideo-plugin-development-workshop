@@ -1,0 +1,25 @@
+{
+  "name": "transcibePlugin",
+  "description": "This plugin transcribes a video file using AWS Transcribe",
+  "author": "Alex Schueren",
+  "version": "1.0.0",
+  "tags": [
+    "video",
+    "streaming",
+    "AWS",
+    "serverless"
+  ],
+  "eventHook": "preMetadata",
+  "average_completion_time": "30 seconds",
+  "services": [
+    "StepFunctions",
+    "Lambda"
+  ],
+  "deployment_template": "template.yaml",
+  "output_example": {
+    "pluginData": {
+      "transcribeJobName": "st-1EQqxfA8cn37wyFj9QsBFqn-00ece1dc",
+      "outputResult": "s3://bucket/output.json"
+    }
+  }
+}
