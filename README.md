@@ -1,17 +1,5 @@
-## My Project
+## ServerlessVideo Plugin Development Workshop
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
-
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
-
+This repository contains the code for the ServerlessVideo Plugin Development Workshop. 
+The workshop is designed to teach you how to create a plugin for the ServerlessVideo application. 
+This plugin will be used to transcribe a video file using AWS Transcribe and store the results in Amazon S3.
