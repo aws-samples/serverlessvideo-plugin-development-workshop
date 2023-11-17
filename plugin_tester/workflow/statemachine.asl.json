@@ -110,7 +110,7 @@
           {
             "Detail": {
               "video": {
-                "id.$": "$.id",
+                "id.$": "$.detail.video.id",
                 "channel.$": "$.detail.video.channel",
                 "createdAt.$": "$.detail.video.createdAt",
                 "durationmillis.$": "$.detail.video.durationmillis",
