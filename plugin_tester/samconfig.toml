@@ -1,9 +1,7 @@
 version = 0.1
 [default.deploy.parameters]
-stack_name = "sflix-plugin-tester"
+stack_name = "svideo-plugin-tester"
 resolve_s3 = true
-s3_prefix = "sflix-plugin-tester"
-region = "us-west-2"
+s3_prefix = "svideo-plugin-tester"
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "eventHook=\"postMetadata\" pluginTitle=\"leaderboardPlugin\""
 image_repositories = []
